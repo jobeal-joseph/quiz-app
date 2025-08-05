@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Quiz.css";
-import Questions from "./Questions";
+import Questions from "../Questions/Questions";
 
 function Quiz() {
   const questions = [

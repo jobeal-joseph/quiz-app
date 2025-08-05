@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Login from "./Login";
-import Quiz from "./Quiz"; 
+import Login from "./components/Login/Login";
+import Quiz from "./components/Quiz/Quiz"; 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
