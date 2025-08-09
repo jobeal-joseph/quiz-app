@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Quiz.css";
 import Questions from "../Questions/Questions";
 
-function Quiz() {
+function Quiz({onLogout}) {
   const questions = [
     {
       question: "What is the capital of France?",
@@ -97,10 +97,16 @@ function Quiz() {
           <p>
             Total Score : {score}/{questions.length}
           </p>
+          <div>
+              <button onClick={onLogout}>Log Out</button>
+          </div>
         </div>
       )}
+
     </>
+    
   );
+  
 }
 
 export default Quiz;
