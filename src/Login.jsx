@@ -7,7 +7,7 @@ function Login({ onLogin }) {
     <div className="login-container">
       <h1 className="login-title">Welcome to Quiz App</h1>
       <p className="login-subtitle">Login to continue</p>
-      
+      <button onClick={onLogin}></button>
       <GoogleLogin onSuccess={onLogin} onError={() => console.log("shit don't work")}></GoogleLogin>
     </div>
   );
