@@ -175,8 +175,20 @@
   font-family: 'bitcount', sans-serif;
   transition: color 0.2s;
 }
+.logout-btn{
+    color: white;
+    background-color: rgb(28, 30, 34);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-family: 'bitcount', sans-serif;
+  transition: color 0.2s;
+    border: none;
+    cursor: pointer;
+    padding: 0px;
+}
 
-.home-drawer ul li a:hover {
+.home-drawer ul li a:hover,
+.logout-btn:hover {
   color: white;
 }
 
