@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./home.css";
 
-function Home({ onStartQuiz }) {
+
+function Home({ onStartQuiz, onLogout }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -28,6 +29,8 @@ function Home({ onStartQuiz }) {
           <li><a href="#">Home</a></li>
           <li><a href="#">Leaderboard</a></li>
           <li><a href="#">About</a></li>
+          <button className="logout-btn" onClick={onLogout}>
+            Logout</button>
         </ul>
       </nav>
 
