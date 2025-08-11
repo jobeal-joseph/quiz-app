@@ -29,7 +29,8 @@
 
 .next:hover,
 .back:hover,
-.submit:hover {
+.submit:hover,
+.home-el:hover {
   background-color: white;
   
   color: black;
@@ -113,9 +114,64 @@ body {
   text-align: center;
   padding: 20px 10px;
   margin: auto;
-  margin-top: 200px;
+  margin-top: 100px;
   color: white;
   font-size: xx-large;
    font-family: 'bitcount', sans-serif; 
    font-weight: 300;
+}
+
+.clock{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 20px;
+  font-family: 'bitcount', sans-serif;
+}
+
+.review{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   color: white;
+  font-size: xx-large;
+   font-family: 'bitcount', sans-serif; 
+   font-weight: 300;
+}
+
+.result-item{
+  color: #e1e1e1;
+  height: auto;
+  width: 300px;
+  text-align: left;
+  padding: 40px 20px;
+  margin: auto;
+  margin-top: 25px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease;
+}
+.home-el {
+  background-color: rgb(28, 30, 34);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 15px;
+  border: none;
+  transition: all 0.3s ease;
+  font-family: 'bitcount', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  margin: 50px auto 0 auto; 
+  cursor: pointer;
+  display: block; 
+  margin-bottom: 100px;
+}
+
+.result-el{
+  margin-bottom: 80px;
 }
