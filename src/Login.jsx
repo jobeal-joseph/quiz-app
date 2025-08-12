@@ -43,7 +43,7 @@ function Login({ onLogin, onSwitchToRegister }) {
     <div className="login-container">
       <h1 className="login-title">Welcome to Quiz App</h1>
       <p className="login-subtitle">Login to continue</p>
-      <button onClick={onLogin}></button>
+      
 
       <form onSubmit={handleEmailLogin} className="login-form">
         <input
