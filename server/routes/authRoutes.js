@@ -53,10 +53,58 @@ router.post('/login', async (req, res) => {
     }
     
     // If credentials are correct, login is successful
-    res.status(200).json({ message: 'Login successful!' });
+    res.status(200).json({ message: 'Login successful!',
+      user:{
+        id: user._id,
+        email: user.email,
+        name: user.name,
+        rollno: user.rollno,
+        detailsSubmitted: user.detailsSubmitted,
+      }
+    });
 
   } catch (error) {
     res.status(500).json({ message: 'Server error during login.' });
+  }
+});
+
+// URL: POST /api/auth/update-details
+router.post('/update-details', async (req, res) => {
+  try {
+    const { userId, name, rollno } = req.body;
+
+    if (!name || !rollno) {
+      return res.status(400).json({ message: 'Name and Roll No. are required.' });
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { 
+        name, 
+        rollno,
+        detailsSubmitted: true // Mark details as submitted
+      },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+    
+    // Send back the updated user object
+    res.status(200).json({
+      message: 'Details updated successfully!',
+      user: {
+        id: updatedUser._id,
+        email: updatedUser.email,
+        name: updatedUser.name,
+        rollno: updatedUser.rollno,
+        detailsSubmitted: updatedUser.detailsSubmitted,
+      }
+    });
+
+  } catch (error) {
+    res.status(500).json({ message: 'Server error updating details.' });
   }
 });
 
