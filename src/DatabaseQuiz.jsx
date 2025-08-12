@@ -1,4 +1,3 @@
-// src/DatabaseQuiz.jsx
 import { useState, useEffect } from 'react';
 import QuizUI from './QuizUI';
 
@@ -11,16 +10,40 @@ function shuffle(array) {
   return newArr;
 }
 
-function DatabaseQuiz({ onQuizEnd }) {
+// ✅ 1. Add 'user' to the list of props
+function DatabaseQuiz({ user, onQuizEnd }) {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const saveResult = async (score, totalQuestions) => {
+    try {
+      // ✅ 2. Declare 'response' with 'const'
+      const response = await fetch('/api/results', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: user.id,
+          name: user.name,
+          rollno: user.rollno,
+          score: score,
+          total: totalQuestions,
+        }),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Failed to save result:', errorData.message);
+      }
+    } catch (error) {
+      console.error("Error connecting to server:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
         const response = await fetch('/api/questions?limit=20', {
-          cache: 'no-cache', 
+          cache: 'no-cache',
         });
 
         if (!response.ok) {
@@ -29,14 +52,11 @@ function DatabaseQuiz({ onQuizEnd }) {
 
         const data = await response.json();
 
-        // ✅ Check if the database returned any questions
         if (data.length === 0) {
           throw new Error("No questions found in the database. Please add some questions.");
         }
 
-        // This will work correctly for any number of questions (1, 5, 20, etc.)
         setQuestions(shuffle(data));
-
       } catch (err) {
         setError(err.message);
       } finally {
@@ -45,14 +65,12 @@ function DatabaseQuiz({ onQuizEnd }) {
     };
 
     fetchQuestions();
-  }, []); // Empty array ensures this runs only once
+  }, []);
 
-  // The render logic remains the same
   if (loading) {
     return <p style={{ textAlign: 'center', fontSize: '1.5rem' }}>Loading questions...</p>;
   }
 
-  // This will now catch both fetch errors and the "No questions found" error
   if (error) {
     return (
       <div style={{ textAlign: 'center', padding: '2rem' }}>
@@ -62,8 +80,7 @@ function DatabaseQuiz({ onQuizEnd }) {
     );
   }
 
-  // This will only render if questions were successfully loaded
-  return <QuizUI questions={questions} onQuizEnd={onQuizEnd} />;
+  return <QuizUI questions={questions} onQuizEnd={onQuizEnd} onSaveResult={saveResult} />;
 }
 
 export default DatabaseQuiz;
