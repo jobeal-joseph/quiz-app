@@ -19,7 +19,7 @@ function DatabaseQuiz({ user, onQuizEnd }) {
   const saveResult = async (score, totalQuestions) => {
     try {
       // ✅ 2. Declare 'response' with 'const'
-      const response = await fetch('/api/results', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/results`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -42,7 +42,7 @@ function DatabaseQuiz({ user, onQuizEnd }) {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await fetch('/api/questions?limit=20', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/questions?limit=20`, {
           cache: 'no-cache',
         });
 

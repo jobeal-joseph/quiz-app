@@ -22,7 +22,7 @@ function Home({ user, onStartQuiz, onLogout, items, loading, error }) {
   useEffect(() => {
     const checkQuizStatus = async () => {
       try {
-        const response = await fetch(`/api/results/${user.id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/results/${user.id}`);
         const data = await response.json();
         setQuizAttempted(data.hasAttempted);
         if (data.hasAttempted) {
