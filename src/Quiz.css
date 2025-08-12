@@ -44,8 +44,9 @@ body {
 }
 
 .op button {
-  height: 40px;
-  max-width: 250px;
+  height: auto;
+  min-height: 40px;
+  max-width: 80%;
   width: 90vw;
   cursor: pointer;
   margin-bottom: 20px;
@@ -181,6 +182,10 @@ body {
     width: 98vw;
     padding: 12px 2vw;
     font-size: 1rem;
+    max-height: 40vw;
+       box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
   }
   .op button,
   .home-el,
