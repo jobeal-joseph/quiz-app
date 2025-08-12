@@ -118,6 +118,13 @@
   margin-top: 10px;
   text-align: center;
 }
+.login-error,
+.login-success {
+ 
+  font-size: 0.9rem;
+  margin-top: 10px;
+  text-align: center;
+}
 
 /* Responsive styles for mobile */
 @media (max-width: 600px) {
