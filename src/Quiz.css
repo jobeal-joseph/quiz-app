@@ -188,7 +188,7 @@ body {
   .back,
   .submit {
     max-width: 98vw;
-    width: 98vw;
+    width: 78vw;
     font-size: 1rem;
     padding: 8px 2vw;
     margin-left: auto;
@@ -196,8 +196,9 @@ body {
     display: block;
   }
   .clock {
-    font-size: 1rem;
-    margin-top: 16px;
+    font-size: 1.5rem;
+    margin-top: 50px;
+    margin-bottom: 80px;
   }
   .ques {
     font-size:1rem;
