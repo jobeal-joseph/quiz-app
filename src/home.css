@@ -41,6 +41,19 @@
   font-family: 'bitcount', sans-serif;
   font-weight: 300;
 }
+.result-display{
+  color: #e1e1e1;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  font-family: 'bitcount', sans-serif;
+  font-weight: 300;
+  background-color: rgb(28, 30, 34);
+  border: none;
+  padding: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease;
+  border-radius: 20px;
+}
 
 .home-btn {
   background-color: rgb(28, 30, 34);

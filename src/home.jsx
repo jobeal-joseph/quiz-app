@@ -7,6 +7,7 @@ function Home({ user, onStartQuiz, onLogout, items, loading, error }) {
 
 // ✅ 1. Add 'user' to the list of props being received
 
+
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [quizAttempted, setQuizAttempted] = useState(false);
   const [userResult, setUserResult] = useState(null);

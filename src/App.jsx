@@ -11,7 +11,6 @@ function App() {
   const [quizStarted, setQuizStarted] = useState(false);
 
   const [view, setView] = useState('login'); // 'login' or 'register'
-  const [userName, setUserName] = useState("");
 
 
 
@@ -56,7 +55,7 @@ function App() {
     return quizStarted ? (
       <DatabaseQuiz user={user} onQuizEnd={() => setQuizStarted(false)} />
     ) : (
-      <Home userName={userName} user={user} onStartQuiz={() => setQuizStarted(true)} onLogout={handleLogout} />
+      <Home  user={user} onStartQuiz={() => setQuizStarted(true)} onLogout={handleLogout} />
     );
   }
 
