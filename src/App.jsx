@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Cookies from 'js-cookie'; // ✅ 1. Import Cookies
 import Login from './Login';
 import Register from './Register';
 import Home from './home';
@@ -8,41 +9,51 @@ import UserDetails from './UserDetails';
 function App() {
   const [user, setUser] = useState(null);
   const [quizStarted, setQuizStarted] = useState(false);
-  const [view, setView] = useState('login'); // 'login' or 'register'
+  const [view, setView] = useState('login');
 
-  // This function now receives the user object from the Login component
+  // ✅ 2. Check for cookie on initial load
+  useEffect(() => {
+    const userCookie = Cookies.get('user');
+    if (userCookie) {
+      // If a cookie is found, parse it and set the user state
+      setUser(JSON.parse(userCookie));
+    }
+  }, []); // Empty dependency array makes this run only once
+
   const handleLogin = (loggedInUser) => {
+    // ✅ 3. Save user object to cookie on login
+    // The cookie will expire in 1 day.
+    Cookies.set('user', JSON.stringify(loggedInUser), { expires: 1 });
     setUser(loggedInUser);
   };
 
   const handleLogout = () => {
+    // ✅ 4. Remove cookie on logout
+    Cookies.remove('user');
     setUser(null);
     setQuizStarted(false);
   };
 
-  // This is called from UserDetails after a successful update
   const handleDetailsSubmit = (updatedUserData) => {
+    // Also update the cookie when user details change
+    Cookies.set('user', JSON.stringify(updatedUserData), { expires: 1 });
     setUser(updatedUserData);
   };
 
-  // --- Main Render Logic ---
+  // --- Main Render Logic (remains the same) ---
 
-  // 1. If a user object exists, they are logged in.
   if (user) {
-    // 1a. If they haven't submitted their details yet, show the details form.
     if (!user.detailsSubmitted) {
       return <UserDetails user={user} onDetailsSubmit={handleDetailsSubmit} />;
     }
 
-    // 1b. If details are submitted, show either the Quiz or the Home page.
     return quizStarted ? (
-      <DatabaseQuiz onQuizEnd={() => setQuizStarted(false)} />
+      <DatabaseQuiz user={user} onQuizEnd={() => setQuizStarted(false)} />
     ) : (
       <Home user={user} onStartQuiz={() => setQuizStarted(true)} onLogout={handleLogout} />
     );
   }
 
-  // 2. If no user object exists, they are logged out. Show Login or Register page.
   return (
     <>
       {view === 'login' ? (

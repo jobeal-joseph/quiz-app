@@ -4,7 +4,7 @@ import Questions from "./Questions";
 import QuizTimer from "./QuizTimer";
 
 // This component now receives 'questions' as a prop
-function QuizUI({ questions, onQuizEnd }) {
+function QuizUI({ questions, onQuizEnd, onSaveResult }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isSubmitted, setisSubmitted] = useState(false);
@@ -29,15 +29,19 @@ function QuizUI({ questions, onQuizEnd }) {
     setUserAnswer(updatedAnswer);
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     let scr = 0;
     selectedOption.forEach((option, i) => {
       if (option === questions[i].correct) {
         scr++;
       }
     });
+
+    await onSaveResult(scr, questions.length);
     setScore(scr);
     setisSubmitted(true);
+
+    
   }
 
   const handleTimeUp = () => {
