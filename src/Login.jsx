@@ -68,15 +68,8 @@ function Login({ onLogin, onSwitchToRegister }) {
 
       {error && <p className="login-error">{error}</p>}
 
-      <div className="divider">
-        <span>OR</span>
-      </div>
 
-
-      <GoogleLogin 
-      onSuccess={onLogin} 
-      onError={() => console.log("shit don't work")}/>
-
+      
       <p className="switch-form">
         Don't have an account?{" "}
         <button onClick={onSwitchToRegister} className="switch-button">
