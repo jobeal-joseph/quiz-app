@@ -13,6 +13,22 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  
+  name: {
+    type: String,
+    default: '',
+  },
+  rollno: {
+    type: String,
+    default: '',
+  },
+  detailsSubmitted: {
+    type: Boolean,
+    default: false,
+  },
+},
+{
+  collection: 'Users'
 });
 
 module.exports = mongoose.model('User', userSchema);
