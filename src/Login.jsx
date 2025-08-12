@@ -31,7 +31,7 @@ function Login({ onLogin, onSwitchToRegister }) {
       }
 
       // If login is successful, call the onLogin prop from App.jsx
-      onLogin();
+      onLogin(data.user);
 
     } catch (err) {
       // Catch errors and display them to the user
@@ -43,7 +43,6 @@ function Login({ onLogin, onSwitchToRegister }) {
     <div className="login-container">
       <h1 className="login-title">Welcome to Quiz App</h1>
       <p className="login-subtitle">Login to continue</p>
-      <button onClick={onLogin}></button>
 
       <form onSubmit={handleEmailLogin} className="login-form">
         <input
