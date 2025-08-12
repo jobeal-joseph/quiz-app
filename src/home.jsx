@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./home.css";
 
 
-function Home({ onStartQuiz, onLogout, items, loading, error }) {
+function Home({ userName, onStartQuiz, onLogout, items, loading, error }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   if (error) {
@@ -37,7 +37,7 @@ function Home({ onStartQuiz, onLogout, items, loading, error }) {
             Logout</button>
         </ul>
       </nav>
-
+      <h2 className="home-welocme">Welcome, {userName}!</h2>
       <div className="home-container">
         <h1 className="home-title">MP & MC</h1>
         <button className="home-btn" onClick={onStartQuiz}>START QUIZ</button>

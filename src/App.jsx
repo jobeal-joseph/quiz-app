@@ -9,6 +9,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [quizStarted, setQuizStarted] = useState(false);
   const [view, setView] = useState('login'); // 'login' or 'register'
+  const [userName, setUserName] = useState("");
 
   // This function now receives the user object from the Login component
   const handleLogin = (loggedInUser) => {
@@ -23,6 +24,7 @@ function App() {
   // This is called from UserDetails after a successful update
   const handleDetailsSubmit = (updatedUserData) => {
     setUser(updatedUserData);
+    setUserName(updatedUserData.name); // Update userName if available
   };
 
   // --- Main Render Logic ---
@@ -38,7 +40,7 @@ function App() {
     return quizStarted ? (
       <DatabaseQuiz onQuizEnd={() => setQuizStarted(false)} />
     ) : (
-      <Home user={user} onStartQuiz={() => setQuizStarted(true)} onLogout={handleLogout} />
+      <Home userName={userName} user={user} onStartQuiz={() => setQuizStarted(true)} onLogout={handleLogout} />
     );
   }
 
