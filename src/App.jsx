@@ -13,7 +13,7 @@ function App() {
   const [view, setView] = useState('login'); // 'login' or 'register'
   const [userName, setUserName] = useState("");
 
-  const [view, setView] = useState('login');
+
 
   // ✅ 2. Check for cookie on initial load
   useEffect(() => {
