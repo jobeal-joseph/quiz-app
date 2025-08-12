@@ -3,13 +3,20 @@ import { useEffect } from "react";
 import Cookies from "js-cookie";
 
 import Login from "./Login";
+import Register from "./Register";
 import Quiz from "./Quiz"; 
 import Home from "./home";
 
 function App() {
 
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [quizStarted, setQuizStarted] = useState(false);
+  const [view, setView] = useState('login');
+
+  const API_URL = 'http://localhost:5001/api/items';
 
   useEffect(() => {
     const loginCookie = Cookies.get("loggedIn");
@@ -19,6 +26,32 @@ function App() {
       setIsLoggedIn(false);
     }
   },[]);
+
+  useEffect(() => {
+    // Only fetch items if the user is logged in
+    if (isLoggedIn) {
+      const fetchItems = async () => {
+        setLoading(true); // Set loading to true before the fetch
+        try {
+          const response = await fetch(API_URL);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          setItems(data); // Update state with fetched data
+        } catch (e) {
+          setError(e.message);
+        } finally {
+          setLoading(false); // Set loading to false after the fetch
+        }
+      };
+
+      fetchItems();
+    } else {
+      // If user logs out, clear the items
+      setItems([]);
+    }
+  }, [isLoggedIn]); // This effect runs whenever isLoggedIn changes
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -31,26 +64,29 @@ function App() {
     Cookies.remove("loggedIn");
   };
 
-  
-
-  return (
-    <>
-      {isLoggedIn ? (
-        quizStarted ? (
-          <Quiz 
-            onQuizEnd={() => setQuizStarted(false)} 
-          />
-        ) : (
-          <Home 
+  if (isLoggedIn) {
+    return quizStarted ? (
+      <Quiz onQuizEnd={() => setQuizStarted(false)} />
+    ) : (
+      <Home 
             onStartQuiz={() => setQuizStarted(true)}
             onLogout={handleLogout}
+            items={items}
+            loading={loading}
+            error={error}
             />
-        )
-      ) : (
-        <Login onLogin={handleLogin} />
-      )}
-    </>
-  );
-}
+    )
+  }
+
+  return (
+      <>
+        {view === 'login' ? (
+          <Login onLogin={handleLogin} onSwitchToRegister={() => setView('register')} />
+        ) : (
+          <Register onSwitchToLogin={() => setView('login')} />
+        )}
+      </>
+    );
+  }
 
 export default App;
