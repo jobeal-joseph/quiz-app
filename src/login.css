@@ -1,24 +1,79 @@
 .login-container {
-  height: 100vh;
+  min-height: 100vh;
   background-color: #191c1f;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-   font-family: 'bitcount', sans-serif; 
-   font-weight: 300;
+  font-family: 'bitcount', sans-serif;
+  font-weight: 300;
+  padding: 0 2vw;
+  box-sizing: border-box;
+}
+
+.login-form {
+  width: 80%;
+  max-width: 300px;
+ 
+  border-radius: 16px;
+  padding: 32px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .login-title {
   font-size: 2rem;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .login-subtitle {
   font-size: 1rem;
   margin-bottom: 30px;
   color: #aaa;
+  text-align: center;
+}
+
+.login-input {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 10px auto 0 auto;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.login-button {
+  background-color: rgb(28, 30, 34);
+  color: white;
+  border-radius: 5px;
+  padding: 8px 24px;
+  border: none;
+  transition: all 0.3s ease;
+  font-family: 'bitcount', sans-serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  cursor: pointer;
+  max-width: 300px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+}
+
+.login-button:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.05);
 }
 
 .google-login-btn {
@@ -33,18 +88,51 @@
   font-weight: bold;
   font-size: 1rem;
   transition: transform 0.2s ease;
-}
-
-.google-login-btn:hover {
-  transform: scale(1.05);
+  margin: 0 auto 10px auto;
+  width: 100%;
+  max-width: 300px;
+  justify-content: center;
 }
 
 .google-login-btn img {
   width: 20px;
   margin-right: 10px;
 }
-.cookie-regular {
-  font-family: "Cookie", cursive;
+
+.divider {
+  margin-top: 24px;
+  margin-bottom: 18px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.switch-button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-family: 'bitcount', sans-serif;
   font-weight: 400;
-  font-style: normal;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 600px) {
+  .login-form {
+    max-width: 98vw;
+    padding: 18px 4vw;
+  }
+  .login-input,
+  .login-button,
+  .google-login-btn {
+    max-width: 98vw;
+    font-size: 1rem;
+    padding: 10px 2vw;
+  }
+  .login-title {
+    font-size: 1.5rem;
+  }
 }
