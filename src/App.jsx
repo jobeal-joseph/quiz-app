@@ -9,6 +9,10 @@ import UserDetails from './UserDetails';
 function App() {
   const [user, setUser] = useState(null);
   const [quizStarted, setQuizStarted] = useState(false);
+
+  const [view, setView] = useState('login'); // 'login' or 'register'
+  const [userName, setUserName] = useState("");
+
   const [view, setView] = useState('login');
 
   // ✅ 2. Check for cookie on initial load
@@ -19,6 +23,7 @@ function App() {
       setUser(JSON.parse(userCookie));
     }
   }, []); // Empty dependency array makes this run only once
+
 
   const handleLogin = (loggedInUser) => {
     // ✅ 3. Save user object to cookie on login
@@ -38,6 +43,7 @@ function App() {
     // Also update the cookie when user details change
     Cookies.set('user', JSON.stringify(updatedUserData), { expires: 1 });
     setUser(updatedUserData);
+    setUserName(updatedUserData.name); // Update userName if available
   };
 
   // --- Main Render Logic (remains the same) ---
@@ -50,7 +56,7 @@ function App() {
     return quizStarted ? (
       <DatabaseQuiz user={user} onQuizEnd={() => setQuizStarted(false)} />
     ) : (
-      <Home user={user} onStartQuiz={() => setQuizStarted(true)} onLogout={handleLogout} />
+      <Home userName={userName} user={user} onStartQuiz={() => setQuizStarted(true)} onLogout={handleLogout} />
     );
   }
 

@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./home.css";
 
+
+
+function Home({ userName, onStartQuiz, onLogout, items, loading, error }) {
+
 // ✅ 1. Add 'user' to the list of props being received
 function Home({ user, onStartQuiz, onLogout }) {
+
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [quizAttempted, setQuizAttempted] = useState(false);
   const [userResult, setUserResult] = useState(null);
@@ -63,7 +68,11 @@ function Home({ user, onStartQuiz, onLogout }) {
         </ul>
       </nav>
 
+      <h2 className="home-welocme">Welcome, {userName}!</h2>
+
+
       {/* Main Content */}
+
       <div className="home-container">
         <h1 className="home-title">MP & MC</h1>
         {/* ✅ 3. Conditionally render based on whether the quiz has been attempted */}
