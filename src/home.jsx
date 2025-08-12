@@ -3,10 +3,10 @@ import "./home.css";
 
 
 
-function Home({ userName, onStartQuiz, onLogout, items, loading, error }) {
+function Home({ user, onStartQuiz, onLogout, items, loading, error }) {
 
 // ✅ 1. Add 'user' to the list of props being received
-function Home({ user, onStartQuiz, onLogout }) {
+
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [quizAttempted, setQuizAttempted] = useState(false);
@@ -68,7 +68,7 @@ function Home({ user, onStartQuiz, onLogout }) {
         </ul>
       </nav>
 
-      <h2 className="home-welocme">Welcome, {userName}!</h2>
+      <h2 className="home-welocme">Welcome, {user.name}!</h2>
 
 
       {/* Main Content */}
