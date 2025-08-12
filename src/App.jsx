@@ -14,9 +14,6 @@ function App() {
 
 
 
-
-
-
   // ✅ 2. Check for cookie on initial load
   useEffect(() => {
     const userCookie = Cookies.get('user');
