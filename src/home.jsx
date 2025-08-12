@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import "./home.css";
 
 
-function Home({ onStartQuiz, onLogout }) {
+function Home({ onStartQuiz, onLogout, items, loading, error }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  if (error) {
+    return <p>Error fetching data: {error}</p>;
+  }
 
   return (
     <>
