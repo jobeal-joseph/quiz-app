@@ -1,0 +1,7 @@
+{
+    
+      "question": "What is the function of an accumulator in a microprocessor? ",
+      "options": ["To store instructions", "To store the results of arithmetic and logic operations", "To control the timing of operations", "To store memory addresses "],
+      "correct": "To store the results of arithmetic and logic operations"
+    
+  }

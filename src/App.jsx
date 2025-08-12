@@ -4,8 +4,9 @@ import Cookies from "js-cookie";
 
 import Login from "./Login";
 import Register from "./Register";
-import Quiz from "./Quiz"; 
+import Quiz from "./QuizOLD"; 
 import Home from "./home";
+import DatabaseQuiz from "./DatabaseQuiz";
 
 function App() {
 
@@ -66,7 +67,7 @@ function App() {
 
   if (isLoggedIn) {
     return quizStarted ? (
-      <Quiz onQuizEnd={() => setQuizStarted(false)} />
+      <DatabaseQuiz onQuizEnd={() => setQuizStarted(false)} />
     ) : (
       <Home 
             onStartQuiz={() => setQuizStarted(true)}

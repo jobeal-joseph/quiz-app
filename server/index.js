@@ -23,9 +23,11 @@ const itemSchema = new mongoose.Schema({
   name: { type: String, required: true },
 });
 
-// Add these lines in server/index.js
-
 const authRoutes = require('./routes/authRoutes'); // Import the new routes
+
+const quizRoutes = require('./routes/quizRoutes'); // Import the quiz routes
+app.use('/api', quizRoutes); // Use the routes
+
 
 // ... after app.use(express.json());
 app.use('/api/auth', authRoutes); // Use the routes with a base path
