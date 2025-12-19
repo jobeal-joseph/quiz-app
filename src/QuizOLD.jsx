@@ -6,7 +6,7 @@ import allquestions from "./questionset";
 
 function Quiz({ onQuizEnd }) {
   const [questions, setQuestions] = useState(
-    shuffleQuestions(allquestions).slice(0, 20)
+    shuffleQuestions(allquestions).slice(0,50)
   );
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const end = currentQuestionIndex >= questions.length;

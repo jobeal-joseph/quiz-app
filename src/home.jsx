@@ -38,7 +38,7 @@ function Home({ user, onStartQuiz, onLogout, items, loading, error }) {
   }, [user]);
 
   if (isLoading) {
-    return <p>Checking quiz status...</p>;
+    return <p className="loader">Checking quiz status...</p>;
   }
 
   return (
@@ -74,7 +74,7 @@ function Home({ user, onStartQuiz, onLogout, items, loading, error }) {
       {/* Main Content */}
 
       <div className="home-container">
-        <h1 className="home-title">MP & MC</h1>
+        <h1 className="home-title">AAD</h1>
         {/* ✅ 3. Conditionally render based on whether the quiz has been attempted */}
         {quizAttempted ? (
           <div className="result-display">
